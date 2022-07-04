@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <string.h>
 #include <ctype.h>
-#include <csse2310a1.h>
+#include <time.h>
 
 #define MAX_INPUT 100
 #define ERR_INPUT_STRUCT "Usage: wordle [-len word-length] [-max max-guesses] [dictionary]\n"
@@ -36,3 +36,5 @@ int starts_with_dash(char* lineArgument);
 char** store_memory(char* dictionary, int gameSize);
 
 void free_dictionary(char** dictionary, char* guess, char* hintString, char* answer);
+
+char* generate_random_word(char* dictionary, int length);

@@ -171,7 +171,13 @@ int starting_arguments(int gameSize, int numberAttempts, char* dictionary) {
 int game(int gameSize, int numberAttempts, char* dictionary) {
     fprintf(stdout, "Welcome to Wordle!\n");
     // get a random word 
-    char* answer = get_random_word(gameSize);
+    char* answer = generate_random_word(dictionary, gameSize);
+    printf("%s", answer);
+    if (answer == NULL) {
+        fprintf(stdout, "The dictionary provided does not contain a number of"
+                "the requested size\n");
+        return 2;
+    }
     // guessed will evaluate as 1 when guess and answer are equal
     int guessed = 0;
     int takenAttempts = numberAttempts;
@@ -247,7 +253,7 @@ int game_summary(int takenAttempts, char** storedDictionary, char* guess,
         char* hintString, char* answer, int guessed) {
     if (takenAttempts == 0) {
         // Ran out of attempts
-        fprintf(stderr, "Bad luck - the word is \"%s\".\n", answer);
+        fprintf(stderr, "Bad luck - the word is %s\n", answer);
         free_dictionary(storedDictionary, guess, hintString, answer);
         return 3;
     } else if (guessed) {
@@ -467,3 +473,37 @@ void free_dictionary(char** dictionary, char* guess, char* hintString,
     free(hintString);
     free(answer);
 }
+
+/*
+ * Generates a random word from the given dictionary
+ * Arguments:
+ *      char* dictionary - dictionary path
+ *      int length - length of word to be searched
+ * Returns:
+ *      char* - the random word
+ *      void - if the supplied dictionary does not have a word of the given 
+ *      length
+ */
+char* generate_random_word(char* dictionary, int length) {
+    FILE* dict = fopen(dictionary, "r");
+    // list of all the words with the given length
+    char** words = malloc(sizeof(char*)*1000000);
+    int counter = 0;
+    char buffer[10];
+    char* word;
+    time_t t;
+    while (fgets(buffer, 10, dict) != NULL) {
+        if (strlen(buffer) == length+1) {
+            word = strndup(buffer, length+1);
+            words[counter] = word;
+            counter++;
+        }
+    }
+    if (counter == 0) {
+        return NULL;
+    }
+    srand((unsigned) time(&t));
+    int randomNumber = rand()%counter;
+    return words[randomNumber];
+}
+
