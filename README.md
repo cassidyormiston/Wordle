@@ -24,4 +24,5 @@ in the wrong place, and which weren't in the answer at all. Invalid guesses don'
 ## Assumptions with custom game play
 
 The length of the word is in between 3 and 9 characters inclusive.
-The order in which the arguments are given is as specified above
+
+The order in which the arguments are given is as specified above.
