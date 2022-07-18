@@ -20,3 +20,8 @@ For custom game play
 The program will determine a random word from the given or default dictionary of the desired word length that is known to the user. The program will repeatedly prompt the user to guess the answer until they get it right or they run out of attempts.
 For incorrect guesses, if the guess is valid (i.e. is the right length and appears in the nomiated dictionary) then the program will report on which letters matched those in the answer (if any) - i.e which letters were in the right place, which were
 in the wrong place, and which weren't in the answer at all. Invalid guesses don't count as an attempt - the user will be prompted to enter another guess.
+
+## Assumptions with custom game play
+
+The length of the word is in between 3 and 9 characters inclusive.
+The order in which the arguments are given is as specified above
