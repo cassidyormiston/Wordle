@@ -7,6 +7,10 @@ This game is based off the NY Times game wordle see www.nytimes.com/games/wordle
 
 Within the same directory as the provided files: 
 
+Run 
+
+`make`
+
 For the default game (5 letter random word from the default dictionary, 6 attempts) run:
 
 `./wordle`
