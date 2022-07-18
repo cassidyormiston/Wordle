@@ -172,7 +172,6 @@ int game(int gameSize, int numberAttempts, char* dictionary) {
     fprintf(stdout, "Welcome to Wordle!\n");
     // get a random word 
     char* answer = generate_random_word(dictionary, gameSize);
-    printf("%s", answer);
     if (answer == NULL) {
         fprintf(stdout, "The dictionary provided does not contain a number of"
                 "the requested size\n");
